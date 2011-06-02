@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html>
+<!--
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+  ~ Copyright (c) 2011 Automated Logic Corporation
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+<head>
+    <title>Modstat Reports</title>
+
+    <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.9.custom.css"/>
+    <link rel='stylesheet' type='text/css' href='skin/ui.dynatree.css'/>
+    <style type="text/css">
+        html,body {
+            height:100%;
+            padding:0px;
+            margin:0px;
+        }
+
+        #tree {
+            width:300px;
+            min-height:100%;
+            height:100%;
+            float:left;
+            overflow:scroll;
+        }
+
+        #treecell {
+            height:100%;
+            overflow:hidden;
+        }
+
+        ul.dynatree-container {
+            border:none;
+            overflow:visible;
+        }
+
+
+        table {
+            height:100%;
+        }
+
+        #rhs {
+            width:100%;
+        }
+
+        table {
+            height:100%;
+        }
+
+        table tr {
+            height:100%;
+        }
+
+
+    </style>
+
+    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.9.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dynatree.min.js"></script>
+
+    <script type='text/javascript' src="js/project.js"></script>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" height="100%">
+    <tr style="min-height:100%;">
+        <td id="treecell" height="100%"><div id="tree"></div></td>
+        <td id="rhs">
+                <button id="actionbutton">Do Something</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
