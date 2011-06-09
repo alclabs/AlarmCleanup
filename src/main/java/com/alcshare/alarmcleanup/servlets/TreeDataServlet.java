@@ -73,7 +73,7 @@ public class TreeDataServlet extends HttpServlet {
 
 
                     for (Location child : children) {
-                        if (child.getType() == LocationType.Driver) {
+                        if (child.getType() == LocationType.Microblock) {
                             continue;
                         }
                         JSONObject next = new JSONObject();
@@ -84,9 +84,10 @@ public class TreeDataServlet extends HttpServlet {
                         next.put("key", child.getTransientLookupString());
                         next.put("path", child.getDisplayPath());
                         next.put("hideCheckbox", false);
+                        next.put("isLazy", false);
 
                         if (!child.getChildren().isEmpty()) {
-                            if ((child.getType() != LocationType.Device) || (child.getChildren().size() != 1)) {
+                            if (child.getType() != LocationType.Equipment) {
                                 next.put("isLazy", true);
                             }
                         }
@@ -139,14 +140,6 @@ public class TreeDataServlet extends HttpServlet {
 
             case Equipment:
                 image = "equipment.gif";
-                break;
-
-            case Microblock:
-                image = "io_point.gif";
-                break;
-
-            case MicroblockComponent:
-                image = "io_point.gif";
                 break;
 
             default:

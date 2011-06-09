@@ -20,64 +20,17 @@
  * THE SOFTWARE.
  */
 
-
-Modstat =
-{
-    startGatherResult : function(data) {
-        //id = data
-        Modstat.getStatus()
-    },
-
-    startGatherError : function(xhr, textStatus, error) {
-        alert("Error starting gather:"+xhr.statusText)
-    },
-
-    statusResult : function(data) {
-        if (data.error) {
-            $('#progtext').text(data.error)
-        }
-        else if (data.stopped) {
-            Modstat.showTabs()
-            $('#progtext').html("<a href=\"servlets/zip\">Download Modstat Zip</a>")
-        } else {
-            var numComplete = data.percent;
-            if (numComplete != undefined) {
-                $('#progtext').text(numComplete+"% complete");
-                Modstat.getStatus() // kick off another check
-            }
-        }
-    },
-
-    getStatus : function() {
-        setTimeout(function() {
-            $.get('servlets/longrunning', { action: 'status'}, Modstat.statusResult, "json")
-        }, 1000)
-    },
-
-    treNavigated : function() {
-        $('#progtext').hide()
-        $('#gatherbutton').show()
-        $('#tabs:visible').hide("blind", {}, 300)
-    },
-
-    showTabs : function() {
-        $('#tabs').tabs('load', 1).show("blind", {}, 300)
-        $('#gatherbutton').hide()
-    }
-}
-
-
-
 $(function(){
     // Attach the dynatree widget to an existing <div id="tree"> element
     // and pass the tree options as an argument to the dynatree() function:
+    // Currently hardcoded to GEO tree
     $("#tree").dynatree({
         title: "System",
         selectMode:1,
 
         initAjax: {
             url: "servlets/treedata",
-            data: { type:'net' }
+            data: { type:'geo' }
         },
 
         onLazyRead: function(dtnode) {
@@ -85,36 +38,29 @@ $(function(){
                 url:"servlets/treedata",
                 data: {
                     id:dtnode.data.key,
-                    type: 'net'
+                    type: 'geo'
                 }
             })
-        },
-
-        onActivate: function(node) {
-            Modstat.treNavigated()
         },
 
         cache: false
     });
 
 
-
+    // get the GEO location ID and also the date from the calendar picker
     $('#actionbutton').button().bind('click', function() {
-        $.ajax({url:'servlets/longrunning',
+        var id = ''
+        var node = $('#tree').dynatree('getActiveNode')
+        if (node) {
+            id = node.data.key
+        }
+        $.ajax({url:'servlets/cleanup',
                 data: {'id':id,
-                       action: 'start'
+                       'days': $('#datepicker').val()
                 },
-                success: function() { Modstat.startGatherResult() },
-                error: function() { Modstat.startGatherError() }})
+                success: function(result) { alert(result) },
+                error:   function() { alert("Unknown server failure" )}})
     })
-
-    $("#test").bind('click', function() {
-        Modstat.showTabs();
-    })
-
-
-    $("#tabs").tabs({ load: function() {eval("initConfig()") } });
-                                                                    
 });
 
 

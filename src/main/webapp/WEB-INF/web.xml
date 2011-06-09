@@ -30,10 +30,19 @@
         <servlet-name>treedata</servlet-name>
         <servlet-class>com.alcshare.alarmcleanup.servlets.TreeDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CleanupServlet</servlet-name>
+        <servlet-class>com.alcshare.alarmcleanup.servlets.CleanupServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>treedata</servlet-name>
         <url-pattern>/servlets/treedata/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CleanupServlet</servlet-name>
+        <url-pattern>/servlets/cleanup/*</url-pattern>
     </servlet-mapping>
 
    <security-constraint>
