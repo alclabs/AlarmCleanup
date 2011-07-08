@@ -2,10 +2,15 @@
 // and then apply it.
 configurations { gradleScript }
 repositories { mavenRepo urls: 'http://repo.alcshare.com' }
-dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.0.4' }
+dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.0.5' }
 apply from: configurations.gradleScript.resolve().iterator().next()
 
-version = '0.1'
+info {
+  name = 'Alarm Cleanup'
+  description = 'Developer sample that removes old alarms'
+  version = '0.1'
+  vendor = 'ALC Labs'
+}
 
 dependencies {
     compile 'commons-io:commons-io:1.4'
@@ -31,4 +36,4 @@ configurations {
     testCompile.extendsFrom groovy
 }
 
-deploy.dependsOn cleanDeploy 
+deploy.dependsOn cleanDeploy
